@@ -1,0 +1,31 @@
+volumes:
+    db:
+
+services:
+    react_app:
+        build: ./p2p-react-app
+        ports:
+            - "3001:3000"
+
+    spring_app:
+        build: ./p2p_refinanced
+        depends_on:
+            - finance_db
+        environment:
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://finance_db:5432/finance
+            - SPRING_DATASOURCE_USERNAME=ChangeMe
+            - SPRING_DATASOURCE_PASSWORD=ChangeMe
+
+        ports:
+            - "8081:8080"
+
+    finance_db:
+        build: ./p2p_refinanced/database
+        environment:
+            - POSTGRES_DB=finance
+            - POSTGRES_USER=ChangeMe
+            - POSTGRES_PASSWORD=ChangeMe
+        volumes:
+            - db:/var/lib/postgresql/data
+        ports:
+            - "5433:5432"
