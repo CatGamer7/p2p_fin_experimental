@@ -1,0 +1,6 @@
+[submodule "p2p_refinanced"]
+	path = p2p_refinanced
+	url = https://github.com/CatGamer7/p2p_refinanced.git
+[submodule "p2p-react-app"]
+	path = p2p-react-app
+	url = https://github.com/CatGamer7/p2p-react-app.git
